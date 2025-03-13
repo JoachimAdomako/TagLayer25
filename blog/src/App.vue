@@ -3,7 +3,7 @@ import navigationComp from './components/navigation.vue'
 export default {
   name: 'App',
   components: {
-    navigationComp
+    navigationComp,
   }
 }
 </script>
