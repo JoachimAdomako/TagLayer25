@@ -1,5 +1,5 @@
 <script>
-import navigationComp from './components/navigation.vue'
+import navigationComp from './components/navBar.vue'
 export default {
   name: 'App',
   components: {
