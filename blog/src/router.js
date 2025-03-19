@@ -18,7 +18,7 @@ const router = createRouter({
         },
         {
             path: '/blogeditor',
-            component: () => import('./views/blogeditor.vue'),
+            component: () => import('./views/blogEditor.vue'),
             meta: { requiresAuth: true },
         },
         {

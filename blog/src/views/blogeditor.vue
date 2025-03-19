@@ -1,12 +1,48 @@
-<script>
-export default {
-    name: 'blogEditor'
-}
-</script>
-
 <template>
     <div>
-        Hello world this is the blogEditor
-        <router-link to="/">Home</router-link>
+        <h1>Create a Blog Post</h1>
+        <p><input type="text" placeholder="Title" v-model="title" /></p>
+        <p><textarea placeholder="Content" v-model="content"></textarea></p>
+        <p><button @click="createPost">Submit</button></p>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue';
+import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAecyiDK5W5paeS2cJvqJpRQezEFYz3fjY",
+  authDomain: "portfolio-c23ff.firebaseapp.com",
+  projectId: "portfolio-c23ff",
+  storageBucket: "portfolio-c23ff.firebasestorage.app",
+  messagingSenderId: "790100481744",
+  appId: "1:790100481744:web:b7a9fdea005d46cb0cf0d5",
+  measurementId: "G-PTFWZDE6MH"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const title = ref('');
+const content = ref('');
+
+const postsCollectionRef = collection(db, 'blogs');
+const createPost = async() => {
+    try{
+        const auth = getAuth(app);
+        const user = auth.currentUser;
+        if(user){
+            await addDoc(postsCollectionRef, {
+                title: title.value,
+                content: content.value,
+                author: { name: user.displayName, id: user.uid },
+            })
+        }
+    }catch(e){
+        console.error(e);
+    }
+}
+</script>
