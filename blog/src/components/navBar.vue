@@ -25,6 +25,9 @@
             <li>
                 <button @click="handleSignOut" v-if="isLoggedIn">Sign out</button>
             </li>
+            <li>
+                <router-link to="/blog">Blog</router-link>
+            </li>
         </ul>
     </nav>
 </template>

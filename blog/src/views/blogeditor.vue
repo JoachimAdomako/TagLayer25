@@ -1,6 +1,10 @@
 <template>
     <div>
         <h1>Create a Blog Post</h1>
+        <p>Week</p>
+        <div><input type="text" placeholder="Geef een nummer in" v-model="weekId"/></div>
+        <input type="text" placeholder="Geef de week in bv: Stage - Week 1" v-model="week"/>
+        <p>Blog</p>
         <p><input type="text" placeholder="Title" v-model="title" /></p>
         <p><textarea placeholder="Content" v-model="content"></textarea></p>
         <p><button @click="createPost">Submit</button></p>
@@ -28,14 +32,23 @@ const db = getFirestore(app);
 
 const title = ref('');
 const content = ref('');
+const week = ref('');
+const weekId = ref();
 
-const postsCollectionRef = collection(db, 'blogs');
+const postsCollectionRefBlogs = collection(db, 'blogs');
+const postsCollectionRefWeek = collection(db, 'weeks');
 const createPost = async() => {
     try{
         const auth = getAuth(app);
         const user = auth.currentUser;
         if(user){
-            await addDoc(postsCollectionRef, {
+            await addDoc(postsCollectionRefWeek, {
+                id: weekId.value,
+                week: week.value,
+            });
+
+            await addDoc(postsCollectionRefBlogs, {
+                id: weekId.value,
                 title: title.value,
                 content: content.value,
                 author: { name: user.displayName, id: user.uid },

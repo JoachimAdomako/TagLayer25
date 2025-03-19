@@ -28,6 +28,14 @@ const router = createRouter({
         {
             path: '/Register',
             component: () => import('./views/Register.vue'),
+        },
+        {
+            path: '/blog',
+            component: () => import('./views/blogWeek.vue'),
+        },
+        {
+            path: '/blog/:id',
+            component: () => import('./views/specificBlog.vue'),
         }
     
     ],
