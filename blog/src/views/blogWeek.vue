@@ -1,14 +1,21 @@
 <template>
-    <div>
-        <h1>Blog</h1>
-        <div v-for="post in posts" :key="post.id">
-            <button
-            @click="goToBlog(post.id)"
-            >{{ post.week }}</button>
-        </div>
-    </div>
-</template>
+  <div class="min-h-screen bg-gradient-to-br from-[#1e293b] to-[#334155] text-white flex flex-col items-center py-12 px-6">
+    <h1 class="text-4xl font-extrabold bg-blue-500 text-transparent bg-clip-text mb-8 p-8">
+      Blog
+    </h1>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-4xl">
+      <button
+        v-for="post in posts"
+        :key="post.id"
+        @click="goToBlog(post.id)"
+        class="bg-[#2563eb] hover:bg-[#1e40af] text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-all transform hover:scale-105"
+      >
+        {{ post.week }}
+      </button>
+    </div>
+  </div>
+</template>
 <script setup>
 import { initializeApp } from 'firebase/app';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
