@@ -1,13 +1,24 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-[#1e293b] to-[#334155] text-white flex flex-col items-center py-12 px-6">
-    <h1 class="text-4xl font-extrabold bg-gradient-to-r bg-blue-400 p-4 text-transparent bg-clip-text mb-8">
+    <h1 class="text-4xl font-extrabold bg-gradient-to-r from-blue-400 to-blue-600 p-4 text-transparent bg-clip-text mb-8">
       Blog Posts
     </h1>
 
     <div v-if="blog.length" class="w-full max-w-3xl space-y-6">
-      <div v-for="post in blog" :key="post.id" class="bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-blue-300">{{ post.title }}</h2>
-        <p class="mt-4 text-gray-200 leading-relaxed">{{ post.content }}</p>
+      <div v-for="post in blog" :key="post.id" class="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700">
+        <!-- Titel -->
+        <h2 class="text-2xl font-bold text-blue-400 mb-2">{{ post.title }}</h2>
+
+        <!-- Auteur Info -->
+        <div class="flex items-center space-x-3 text-gray-400 text-sm mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-300" viewBox="0 0 20 20" fill="currentColor">
+            <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-6 8a6 6 0 0112 0H4z"/>
+          </svg>
+          <span class="font-medium text-gray-300">Gepubliceerd door: <span class="text-white">{{ post.author.name }}</span></span>
+        </div>
+
+        <!-- Content -->
+        <div class="text-gray-100 leading-relaxed" v-html="post.content"></div>
       </div>
     </div>
 

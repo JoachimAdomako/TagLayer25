@@ -17,12 +17,16 @@ export default {
   
         <!-- Call to Action Buttons -->
         <div class="mt-8 flex space-x-4 animate-fade-in delay-400">
-          <router-link to="/" class="px-6 py-3 bg-[#2563eb] hover:bg-[#1e40af] text-white font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105">
-            Go Home
-          </router-link>
-          <a href="mailto:joachim@example.com" class="px-6 py-3 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105">
-            Contact Me
-          </a>
+            <router-link 
+            to="/blog" 
+            class="relative z-10 px-6 py-3 bg-[#2563eb] hover:bg-[#1e40af] text-white font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105">
+            Go To Blog
+        </router-link>
+        <a 
+        href="https://www.linkedin.com/in/joachim-adomako-3537b8197/" 
+        class="relative z-10 px-6 py-3 bg-gray-600 hover:bg-gray-500 text-white font-semibold rounded-lg shadow-lg transition-all transform hover:scale-105">
+        Go To LinkedIn
+    </a>
         </div>
       </div>
   
