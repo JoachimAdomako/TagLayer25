@@ -4,6 +4,7 @@
         <p><input type="text" placeholder="Email" v-model="email"/></p>
         <p><input type="password" placeholder="Password" v-model="password"/></p>
         <p><button @click="register">Submit</button></p>
+        <p><router-link to="/signin" @click="toggleMenu">Not signed in yet? Sign in</router-link></p>
         <p><button @click="signInWithGoogle">Sign In With Google</button></p>
     </div>
 </template>

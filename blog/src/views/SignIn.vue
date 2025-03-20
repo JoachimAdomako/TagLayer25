@@ -5,7 +5,6 @@
         <p><input type="password" placeholder="Password" v-model="password"/></p>
         <p v-if="errMsg">{{ errMsg }}</p>
         <p><button @click="signIn">Submit</button></p>
-        <p><button @click="signInWithGoogle">Sign In With Google</button></p>
     </div>
 </template>
 
