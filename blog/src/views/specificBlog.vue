@@ -4,6 +4,13 @@
       Blog Posts
     </h1>
 
+    <input
+    type="text"
+    v-model="searchQuery"
+    placeholder="Zoek naar een tag..."
+    class="w-full max-w-md px-4 py-2 mb-6 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-200"
+    />
+
     <div v-if="blog.length" class="w-full max-w-3xl space-y-6">
       <div v-for="post in blog" :key="post.id" class="bg-gray-900 p-6 rounded-xl shadow-lg border border-gray-700">
         <!-- Titel -->
@@ -34,6 +41,7 @@
 <script setup>
 import { initializeApp } from 'firebase/app';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
+import { createPinia } from 'pinia';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -53,6 +61,8 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const blogPosts = ref([]);
+const searchQuery = ref('');
+
 
 const postsCollectionRefBlogs = collection(db, 'blogs');
 const getWeek = async () => {
@@ -66,7 +76,14 @@ const getWeek = async () => {
 };
 
 const blog = computed(() => {
-    return blogPosts.value.filter(post => post.id === route.params.id);
+  const filteredBlogsPerWeek = blogPosts.value.filter(post => post.id === route.params.id);
+  if (searchQuery.value) {
+    return filteredBlogsPerWeek.filter(post =>
+      post.tags?.some(tag => tag.toLowerCase().includes(searchQuery.value.toLowerCase()))
+    );
+  } else {
+    return filteredBlogsPerWeek;
+  }
 })
 
 getWeek();
