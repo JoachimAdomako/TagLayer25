@@ -17,6 +17,11 @@
           <span class="font-medium text-gray-300">Gepubliceerd door: <span class="text-white">{{ post.author.name }}</span></span>
         </div>
 
+        <!-- tag -->
+        <div v-for="tag in post.tags" :key="tag" class="p-1 inline-block bg-blue-500 text-white text-xs font-semibold px-2 py-1 rounded-full mr-2">
+          {{ tag }}
+        </div>
+
         <!-- Content -->
         <div class="text-gray-100 leading-relaxed" v-html="post.content"></div>
       </div>
