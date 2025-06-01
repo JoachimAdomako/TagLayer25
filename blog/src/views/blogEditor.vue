@@ -162,6 +162,7 @@ const addBlogPost = async () => {
         // Reset velden
         title.value = '';
         content.value = '';
+        tags.value = '';
     } catch (e) {
         console.error("Fout bij toevoegen van blogpost:", e);
     }
