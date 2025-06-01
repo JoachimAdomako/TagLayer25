@@ -67,6 +67,16 @@
         ></textarea>
       </div>
 
+      <div>
+        <label class="block text-gray-300 mb-1">Tags (optioneel)</label>
+        <input
+          type="text"
+          placeholder="Voeg tags toe, gescheiden door komma's"
+          v-model="tags"
+          class="w-full px-4 py-2 mb-6 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
       <!-- Knop om een blogpost toe te voegen -->
       <button
         @click="addBlogPost"
@@ -101,6 +111,7 @@ const title = ref('');
 const content = ref('');
 const week = ref('');
 const weekId = ref('');
+const tags = ref('');
 
 const postsCollectionRefBlogs = collection(db, 'blogs');
 const postsCollectionRefWeek = collection(db, 'weeks');
@@ -144,6 +155,7 @@ const addBlogPost = async () => {
             title: title.value,
             content: content.value,
             author: { name: user.displayName, id: user.uid },
+            tags: tags.value ? tags.value.split(',').map(tag => tag.trim()) : [],
         });
 
         console.log("Blogpost toegevoegd!");
