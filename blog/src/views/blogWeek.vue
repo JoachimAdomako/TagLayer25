@@ -43,8 +43,13 @@ const postsCollectionRef = collection(db, 'weeks');
 const getWeek = async () => {
   try {
     const data = await getDocs(postsCollectionRef);
-    posts.value = data.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    console.log(posts.value);
+    posts.value = data.docs.map(doc => ({ id: doc.id, ...doc.data() }))
+    .sort((a, b) => {
+      const weekA = parseInt(a.id.replace('week', ''));
+      const weekB = parseInt(b.id.replace('week', ''));
+      return weekA - weekB;
+    });
+    ;
   } catch (error) {
     console.error("Error fetching posts:", error);
   }

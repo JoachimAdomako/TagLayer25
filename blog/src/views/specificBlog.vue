@@ -41,7 +41,6 @@
 <script setup>
 import { initializeApp } from 'firebase/app';
 import { collection, getDocs, getFirestore } from 'firebase/firestore';
-import { createPinia } from 'pinia';
 import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router';
 
